@@ -27,7 +27,7 @@ type Scheduler struct {
 }
 
 func main() {
-	godotenv.Load()
+	setIP()
 	s15 := NewScheduler()
 	s15.ScheduleTask(Task{
 		Action: func() {
@@ -112,10 +112,9 @@ func setIP() error {
 			})
 			if err != nil {
 				fmt.Println("Error updating firewall rule:", err)
-				return nil
+				continue
 			}
 			fmt.Println(currentTime, "Firewall rule updated:", rule.Label)
-			return nil
 		}
 	}
 
